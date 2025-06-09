@@ -101,9 +101,11 @@ public class InicioSesionController {
     public String mostrarFormularioRegistro() {
         return "registro";
     }
-
-    @GetMapping("/login")
+        @GetMapping("/login")
 public String mostrarLogin() {
     return "login";          
 }
+
+}
+
 
