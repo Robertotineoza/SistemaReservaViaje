@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Chofer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e6f0ff;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .form-container, .table-container {
+      background-color: #ffffff;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 {
+      color: #005eb8;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="search"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      background-color: #005eb8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004799;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #005eb8;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f9ff;
+    }
+
+    .search-bar {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registrar Chofer</h2>
+    <form action="/choferes" method="POST">
+      <label for="codigo">Código (CH-0000):</label>
+      <input type="text" id="codigo" name="codigo" pattern="CH-[0-9]{4}" required
+             placeholder="Ej. CH-1234" title="Formato: CH-1234 (CH-, 4 números)" />
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez" />
+
+      <button type="submit">Registrar Chofer</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <h2>Lista de Choferes Registrados</h2>
+    <input class="search-bar" type="search" id="searchInput" placeholder="Buscar por código...">
+
+    <table id="choferTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Código</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="chofer : ${choferes}">
+          <td th:text="${chofer.id}"></td>
+          <td th:text="${chofer.codigo}"></td>
+          <td th:text="${chofer.nombre}"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Buscador por código en tiempo real
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const filter = this.value.toUpperCase();
+      const rows = document.querySelectorAll("#choferTable tbody tr");
+
+      rows.forEach(row => {
+        const codigo = row.cells[1].textContent.toUpperCase();
+        row.style.display = codigo.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+
+</body>
+</html>

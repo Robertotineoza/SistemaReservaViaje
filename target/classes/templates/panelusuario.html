@@ -1,0 +1,82 @@
+<!-- panelusuario.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Usuario</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #d0e6ff, #e6f0ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 420px;
+    }
+
+    h1 {
+      color: #005eb8;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: block;
+      background-color: #005eb8;
+      color: #ffffff;
+      padding: 15px;
+      margin: 15px 0;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #004799;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Bienvenido, Usuario</h1>
+
+    <form action="/reserva">
+      <button type="submit" class="button">Registrar Reserva de Viaje</button>
+    </form>
+
+    <form action="/misreservas">
+      <button type="submit" class="button">Reserva y Cancelación de Viaje</button>
+    </form>
+
+    <form method="post" action="/logout">
+      <button type="submit" class="button" style="background-color: #d9534f;">Cerrar Sesión</button>
+    </form>
+
+    <div class="footer">
+      Sistema de Gestión de Reservas © 2025
+    </div>
+  </div>
+
+</body>
+</html>
